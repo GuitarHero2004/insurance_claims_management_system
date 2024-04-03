@@ -1,4 +1,4 @@
-package com.guitarhero2004.icms.generator;
+package com.guitarhero2004.icms.lib;
 
 import java.util.Random;
 
