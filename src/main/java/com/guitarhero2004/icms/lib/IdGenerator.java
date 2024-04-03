@@ -3,39 +3,43 @@ package com.guitarhero2004.icms.lib;
 import java.util.Random;
 
 public class IdGenerator {
-    public static String generateCustomerId () {
-        String prefix = "c-";
-        int length = 7;
-        String customerIdDigits = "0000001";
-        StringBuilder customerIdBuilder = new StringBuilder();
 
-        Random randomCustomerId = new Random();
+    private String id;
 
-        customerIdBuilder.append(prefix);
+    private static String numbers = "0123456789";
 
-        for (int i = 0; i < length; i++) {
-            int index = randomCustomerId.nextInt(customerIdDigits.length());
-            customerIdBuilder.append(customerIdDigits.charAt(index));
-        }
-        return customerIdBuilder.toString();
+    private IdGenerator(String id) {
+        this.id = id;
     }
 
+    public static IdGenerator generateId (int length) {
+        StringBuilder idBuilder = new StringBuilder();
 
-    public static String generateInsuranceCardId () {
-        String prefix = "f-";
-        int length = 10;
-        String insuranceCardIdDigits = "0000000001";
-        StringBuilder insuranceCardIdBuilder = new StringBuilder();
-
-        Random randomInsuranceCardId = new Random();
-
-        insuranceCardIdBuilder.append(prefix);
-
+        Random random = new Random();
         for (int i = 0; i < length; i++) {
-            int index = randomInsuranceCardId.nextInt(insuranceCardIdDigits.length());
-            insuranceCardIdBuilder.append(insuranceCardIdDigits.charAt(index));
+            idBuilder.append(numbers.charAt(random.nextInt(numbers.length())));
         }
-        return insuranceCardIdBuilder.toString();
+
+        return new IdGenerator(idBuilder.toString());
+    }
+
+    public String prefix(String prefix) {
+        return prefix + id;
+    }
+
+    @Override
+    public String toString() {
+        return "IdGenerator{" +
+                "id='" + id + '\'' +
+                '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
