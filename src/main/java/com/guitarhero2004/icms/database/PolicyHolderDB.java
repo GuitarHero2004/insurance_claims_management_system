@@ -5,31 +5,30 @@ import java.util.Set;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.guitarhero2004.icms.customer.Dependent;
+import com.guitarhero2004.icms.customer.PolicyHolder;
 import com.guitarhero2004.icms.lib.adapter.LocalDateTimeAdapter;
 
-public class DependentDB extends AbstractDB<Dependent> {
+public class PolicyHolderDB extends AbstractDB<PolicyHolder> {
 
-    private static DependentDB instance;
+    private static PolicyHolderDB instance;
 
-    private DependentDB() {
+    private PolicyHolderDB() {
         super(new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create(),
-                Dependent.class,
-                new TypeToken<Set<Dependent>>() {
+                PolicyHolder.class,
+                new TypeToken<Set<PolicyHolder>>() {
                 });
     }
 
-    public static DependentDB getInstance() {
+    public static PolicyHolderDB getInstance() {
         if (instance == null) {
             synchronized (DependentDB.class) {
                 if (instance == null) {
-                    instance = new DependentDB();
+                    instance = new PolicyHolderDB();
                 }
             }
         }
         return instance;
     }
-
 }

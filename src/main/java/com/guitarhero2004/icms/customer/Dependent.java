@@ -58,11 +58,9 @@ public class Dependent extends Customer {
 
     @Override
     public String toString() {
-        return "Dependent{" +
-                "id='" + getId() + '\'' +
+        return "id='" + getId() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
                 ", InsuranceCard=" + getInsuranceCard() +
-                ", claims=" + getClaims() +
-                '}';
+                ", claims=" + getClaims();
     }
 }

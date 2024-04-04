@@ -9,7 +9,7 @@ import java.util.*;
  * @author Tran Nguyen Anh Minh - s3979367
  */
 
-public class PolicyHolder extends Customer{
+public class PolicyHolder extends Customer {
     private ArrayList<Dependent> listOfDependents;
 
     public PolicyHolder(String customerId, String fullName, InsuranceCard insuranceCard, ArrayList<Claim> claims, ArrayList<Dependent> listOfDependents) {
@@ -35,12 +35,11 @@ public class PolicyHolder extends Customer{
 
     @Override
     public String toString() {
-        return "PolicyHolder{" +
-                ", listOfDependents=" + listOfDependents +
-                ", id='" + getId() + '\'' +
-                ", fullName='" + getFullName() + '\'' +
-                ", InsuranceCard=" + getInsuranceCard().getCardNumber() +
-                ", claims=" + getClaims() +
-                '}';
+        return ", listOfDependents: " + listOfDependents +
+                ", id: '" + getId() + '\'' +
+                ", fullName: '" + getFullName() + '\'' +
+                ", InsuranceCard: " + getInsuranceCard() +
+                ", claims: " + getClaims();
     }
+
 }

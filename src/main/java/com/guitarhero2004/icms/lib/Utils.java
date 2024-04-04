@@ -1,9 +1,16 @@
 package com.guitarhero2004.icms.lib;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
+import org.jline.reader.LineReader;
 import org.jline.terminal.Terminal;
 import org.jline.utils.NonBlockingReader;
+
+import com.guitarhero2004.icms.database.AbstractDB;
+import com.guitarhero2004.icms.database.CardDB;
 
 public class Utils {
     public static void printDivider(int len) {
@@ -47,6 +54,36 @@ public class Utils {
         public static void clearScreen() {
             System.out.print("\033[H\033[2J");
             System.out.flush();
+        }
+
+        public static <T> T promptForInput(String prompt, LineReader lineReader, AbstractDB<T> db,
+                Consumer<Collection<?>> displayData) {
+            return promptForInput(prompt, lineReader, db.getAll(), displayData);
+        }
+
+        public static <T> T promptForInput(String prompt, LineReader lineReader, Collection<T> list,
+                Consumer<Collection<?>> displayData) {
+            while (true) {
+                System.out.println("\n[v to view | s to skip]");
+                String input = lineReader.readLine(prompt);
+                switch (input) {
+                    case "v":
+                        displayData.accept(list);
+                        System.out.println();
+                        break;
+                    case "s":
+                        return null;
+                    default:
+                        if (input.trim().matches("\\d+")) {
+                            int index = Integer.parseInt(input);
+                            if (index > 0 && index <= CardDB.getInstance().getAll().size()) {
+                                return list.stream().skip(index-1).findFirst().get();
+                            }
+                        } else {
+                            System.out.println("Invalid input");
+                        }
+                }
+            }
         }
 
     }
