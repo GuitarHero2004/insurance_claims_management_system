@@ -2,6 +2,7 @@ package com.guitarhero2004.icms.customer;
 
 import com.guitarhero2004.icms.card.InsuranceCard;
 import com.guitarhero2004.icms.claim.Claim;
+import com.guitarhero2004.icms.database.DependentDB;
 
 import java.util.ArrayList;
 
@@ -10,25 +11,55 @@ import java.util.ArrayList;
  */
 public class Dependent extends Customer {
 
-    private PolicyHolder policyHolder;
+    public static void main(String[] args) {
+        DependentDB dp = DependentDB.getInstance();
+        Dependent test = Dependent.builder().setID("c-1234567").setName("TEST").build();
+        dp.add(test);
+    }
 
-    public Dependent(String customerId, String fullName, InsuranceCard insuranceCard, ArrayList<Claim> claims, PolicyHolder policyHolder) {
+    public Dependent(String customerId, String fullName, InsuranceCard insuranceCard, ArrayList<Claim> claims) {
         super(customerId, fullName, insuranceCard, claims);
-        this.policyHolder = policyHolder;
     }
 
-    public PolicyHolder getPolicyHolder() {
-        return policyHolder;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public void setPolicyHolder(PolicyHolder policyHolder) {
-        this.policyHolder = policyHolder;
+    public static class Builder {
+        private String id;
+        private String name;
+        private InsuranceCard insuranceCard;
+        private ArrayList<Claim> claims;
+
+        public Builder setID(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setCard(InsuranceCard insuranceCard) {
+            this.insuranceCard = insuranceCard;
+            return this;
+        }
+
+        public Builder setClaims(ArrayList<Claim> claims) {
+            this.claims = claims;
+            return this;
+        }
+
+        public Dependent build() {
+            return new Dependent(id, name, insuranceCard, claims);
+        }
     }
 
     @Override
     public String toString() {
         return "Dependent{" +
-                "id='" + getCustomerId() + '\'' +
+                "id='" + getId() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
                 ", InsuranceCard=" + getInsuranceCard() +
                 ", claims=" + getClaims() +

@@ -37,7 +37,7 @@ public class PolicyHolder extends Customer{
     public String toString() {
         return "PolicyHolder{" +
                 ", listOfDependents=" + listOfDependents +
-                ", id='" + getCustomerId() + '\'' +
+                ", id='" + getId() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
                 ", InsuranceCard=" + getInsuranceCard().getCardNumber() +
                 ", claims=" + getClaims() +
