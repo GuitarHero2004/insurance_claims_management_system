@@ -3,19 +3,17 @@ package com.guitarhero2004.icms.lib;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import org.jline.reader.LineReader;
 import org.jline.terminal.Terminal;
 import org.jline.utils.NonBlockingReader;
 
 import com.guitarhero2004.icms.database.AbstractDB;
-import com.guitarhero2004.icms.database.CardDB;
 
 public class Utils {
     public static void printDivider(int len) {
         for (int i = 0; i < len; i++) {
-            System.out.print("-");
+            System.out.print("─");
         }
         System.out.println();
     }
@@ -76,9 +74,10 @@ public class Utils {
                     default:
                         if (input.trim().matches("\\d+")) {
                             int index = Integer.parseInt(input);
-                            if (index > 0 && index <= CardDB.getInstance().getAll().size()) {
+                            if (index > 0 && index <= list.size()) {
                                 return list.stream().skip(index-1).findFirst().get();
                             }
+                            System.out.println("Invalid index");
                         } else {
                             System.out.println("Invalid input");
                         }

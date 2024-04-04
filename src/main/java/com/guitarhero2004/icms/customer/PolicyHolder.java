@@ -35,7 +35,7 @@ public class PolicyHolder extends Customer {
 
     @Override
     public String toString() {
-        return ", listOfDependents: " + listOfDependents +
+        return "listOfDependents: " + listOfDependents +
                 ", id: '" + getId() + '\'' +
                 ", fullName: '" + getFullName() + '\'' +
                 ", InsuranceCard: " + getInsuranceCard() +

@@ -6,7 +6,7 @@ import com.guitarhero2004.icms.claim.Claim;
 
 public interface ClaimProcessManager {
     void add(Claim object);
-    void update(Claim object);
+    void update(Claim oldObject, Claim newObject);
     void delete(Claim object);
     Claim getOne(String key);
     Collection<Claim> getAll();

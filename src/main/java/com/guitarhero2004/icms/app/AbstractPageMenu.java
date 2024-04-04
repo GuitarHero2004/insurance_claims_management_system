@@ -22,15 +22,17 @@ public abstract class AbstractPageMenu<T extends Storeable> {
 
     protected final LineReader lineReader;
 
+    protected final SubMenu objMenu;
+
     public AbstractPageMenu(Terminal term, String name, MenuList menu, AbstractDB<T> db) {
         this.term = term;
         this.name = name;
         this.lineReader = LineReaderBuilder.builder().terminal(term).build();
+        this.objMenu = new SubMenu(term);
         setupObjectMenu(menu, db);
     }
     
-    private void setupObjectMenu(MenuList menu, AbstractDB<T> db) {
-        SubMenu objMenu = new SubMenu(term);
+    protected void setupObjectMenu(MenuList menu, AbstractDB<T> db) {
         MenuItem objMenuItem = new MenuItem(name, objMenu);
 
         MenuItem viewObj = new MenuItem("View " + name, () -> {
@@ -84,6 +86,8 @@ public abstract class AbstractPageMenu<T extends Storeable> {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
                 break;
+            } catch (Exception e) {
+                System.out.println("Invalid index");
             }
         }
 

@@ -29,11 +29,8 @@ public class Home {
         // Cards
         new CardMenu(term, menu);
 
-        MenuItem claims = new MenuItem("Claims", () -> {
-            System.out.println("Claims");
-        });
-
-        menu.addItem(claims);
+        // Claims
+        new ClaimMenu(term, menu);
 
         menu.run();
     }
