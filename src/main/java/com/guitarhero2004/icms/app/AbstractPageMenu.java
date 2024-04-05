@@ -31,7 +31,12 @@ public abstract class AbstractPageMenu<T extends Storeable> {
         this.objMenu = new SubMenu(term);
         setupObjectMenu(menu, db);
     }
-    
+
+    /* **
+     * Set up the object menu
+     * @param menu
+     * @param db
+     */
     protected void setupObjectMenu(MenuList menu, AbstractDB<T> db) {
         MenuItem objMenuItem = new MenuItem(name, objMenu);
 

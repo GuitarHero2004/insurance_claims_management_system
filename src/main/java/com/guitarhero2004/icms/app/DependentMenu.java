@@ -1,9 +1,10 @@
 package com.guitarhero2004.icms.app;
 
+import com.guitarhero2004.icms.customer.Dependent;
+import com.guitarhero2004.icms.customer.DependentBuilder;
 import org.jline.terminal.Terminal;
 
 import com.guitarhero2004.icms.card.InsuranceCard;
-import com.guitarhero2004.icms.customer.Dependent;
 import com.guitarhero2004.icms.database.AbstractDB;
 import com.guitarhero2004.icms.database.CardDB;
 import com.guitarhero2004.icms.database.DependentDB;
@@ -30,7 +31,7 @@ public class DependentMenu extends AbstractPageMenu<Dependent> {
         
         InsuranceCard card = Utils.Console.promptForInput("\n[v to view | s to skip]\nEnter card number (index from list):", lineReader, CardDB.getInstance(), this::displayData);
 
-        Dependent dep = Dependent.builder().setID(id).setName(name).setCard(card).build();
+        Dependent dep = new DependentBuilder.Builder().setID(id).setName(name).setCard(card).build();
         db.add(dep);
     }
 

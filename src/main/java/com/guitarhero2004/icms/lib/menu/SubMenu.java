@@ -13,7 +13,7 @@ public class SubMenu extends MenuList {
         System.out.println(String.format(
                 "%s | %s | %s%n",
                 "<1-9>: select option",
-                "Exit: ctrl + e",
+                "Exit: e",
                 "Back: b"));
     }
 
