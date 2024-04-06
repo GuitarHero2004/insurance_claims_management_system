@@ -1,5 +1,10 @@
 package com.guitarhero2004.icms.app;
 
+/**
+ * @author Tran Nguyen Anh Minh - s3979367
+ * External sources and ideas: JLine3 documentation and examples, StackOverflow, ChatGPT
+ */
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,12 +30,26 @@ import com.guitarhero2004.icms.lib.idGenerator.IdGenerator;
 import com.guitarhero2004.icms.lib.menu.MenuItem;
 import com.guitarhero2004.icms.lib.menu.MenuList;
 
+/**
+ * Class for managing the menu related to Claims.
+ * Extends the AbstractPageMenu class with Claim as the type parameter.
+ */
 public class ClaimMenu extends AbstractPageMenu<Claim> {
-
+    /**
+     * Constructor for ClaimMenu.
+     * @param term The terminal where the menu will be displayed.
+     * @param menu The menu list where the menu items will be added.
+     */
     public ClaimMenu(Terminal term, MenuList menu) {
         super(term, "Claim", menu, ClaimDB.getInstance());
     }
 
+    /**
+     * Method for setting up the object menu
+     * Overrides the method in the superclass.
+     * @param menu The menu list where the menu items will be added.
+     * @param db The database where the objects will be stored.
+     */
     @Override
     protected void setupObjectMenu(MenuList menu, AbstractDB<Claim> db) {
         super.setupObjectMenu(menu, db);
@@ -42,6 +61,11 @@ public class ClaimMenu extends AbstractPageMenu<Claim> {
         objMenu.addItem(updateObjItem);
     }
 
+    /**
+     * Method for adding a Claim object to the database.
+     * Overrides the abstract method in the superclass.
+     * @param db The database where the object will be added.
+     */
     @Override
     protected void addObj(AbstractDB<Claim> db) {
         Console.clearScreen();
@@ -118,6 +142,10 @@ public class ClaimMenu extends AbstractPageMenu<Claim> {
         db.add(claim);
     }
 
+    /**
+     * Method for updating a Claim object in the database.
+     * @param oldClaim The old claim object to be updated.
+     */
     protected void updateClaim(Claim oldClaim) {
         System.out.println("Update " + name + Utils.getDivider(20));
 

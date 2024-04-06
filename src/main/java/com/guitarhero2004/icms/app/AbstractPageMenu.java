@@ -1,5 +1,10 @@
 package com.guitarhero2004.icms.app;
 
+/**
+ * @author Tran Nguyen Anh Minh - s3979367
+ * External sources and ideas: JLine3 documentation and examples, StackOverflow, ChatGPT
+ */
+
 import java.io.IOException;
 import java.util.Collection;
 
@@ -15,15 +20,23 @@ import com.guitarhero2004.icms.lib.menu.MenuItem;
 import com.guitarhero2004.icms.lib.menu.MenuList;
 import com.guitarhero2004.icms.lib.menu.SubMenu;
 
+/**
+ * Abstract class for creating a page menu.
+ * @param <T> The type of objects that this menu will handle. Must implement Storeable.
+ */
 public abstract class AbstractPageMenu<T extends Storeable> {
     protected final String name;
-
     private final Terminal term;
-
     protected final LineReader lineReader;
-
     protected final SubMenu objMenu;
 
+    /**
+     * Constructor for AbstractPageMenu.
+     * @param term The terminal where the menu will be displayed.
+     * @param name The name of the menu.
+     * @param menu The menu list where the menu items will be added.
+     * @param db The database where the objects will be stored.
+     */
     public AbstractPageMenu(Terminal term, String name, MenuList menu, AbstractDB<T> db) {
         this.term = term;
         this.name = name;
@@ -32,10 +45,10 @@ public abstract class AbstractPageMenu<T extends Storeable> {
         setupObjectMenu(menu, db);
     }
 
-    /* **
-     * Set up the object menu
-     * @param menu
-     * @param db
+    /**
+     * Set up the object menu.
+     * @param menu The menu list where the menu items will be added.
+     * @param db The database where the objects will be stored.
      */
     protected void setupObjectMenu(MenuList menu, AbstractDB<T> db) {
         MenuItem objMenuItem = new MenuItem(name, objMenu);
@@ -63,8 +76,16 @@ public abstract class AbstractPageMenu<T extends Storeable> {
         menu.addItem(objMenuItem);
     }
 
+    /**
+     * Abstract method for adding an object to the database.
+     * @param db The database where the object will be added.
+     */
     protected abstract void addObj(AbstractDB<T> db);
 
+    /**
+     * Method for removing an object from the database.
+     * @param db The database where the object will be removed.
+     */
     protected void delObj(AbstractDB<T> db) {
         Console.clearScreen();
 
@@ -98,12 +119,16 @@ public abstract class AbstractPageMenu<T extends Storeable> {
 
     }
 
+    /**
+     * Method for displaying data from a collection.
+     * @param dataList The collection of data to be displayed.
+     */
     protected void displayData(Collection<?> dataList) {
         if (dataList.isEmpty()) {
             System.out.println("No data available");
             return;
         }
-        
+
         int idx = 1;
         for (Object s : dataList) {
             System.out.print(idx + ") ");

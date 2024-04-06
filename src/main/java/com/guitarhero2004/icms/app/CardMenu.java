@@ -1,5 +1,10 @@
 package com.guitarhero2004.icms.app;
 
+/**
+ * @author Tran Nguyen Anh Minh - s3979367
+ * External sources and ideas: JLine3 documentation and examples, StackOverflow, ChatGPT
+ */
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,12 +19,26 @@ import com.guitarhero2004.icms.lib.Utils.Console;
 import com.guitarhero2004.icms.lib.idGenerator.IdGenerator;
 import com.guitarhero2004.icms.lib.menu.MenuList;
 
+/**
+ * Class for managing the menu related to Insurance Cards.
+ * Extends the AbstractPageMenu class with InsuranceCard as the type parameter.
+ */
 public class CardMenu extends AbstractPageMenu<InsuranceCard> {
 
+    /**
+     * Constructor for CardMenu.
+     * @param term The terminal where the menu will be displayed.
+     * @param menu The menu list where the menu items will be added.
+     */
     public CardMenu(Terminal term, MenuList menu) {
         super(term, "Insurance card", menu, CardDB.getInstance());
     }
 
+    /**
+     * Method for adding an InsuranceCard object to the database.
+     * Overrides the abstract method in the superclass.
+     * @param db The database where the object will be added.
+     */
     @Override
     protected void addObj(AbstractDB<InsuranceCard> db) {
         Console.clearScreen();
@@ -28,8 +47,7 @@ public class CardMenu extends AbstractPageMenu<InsuranceCard> {
 
         String id = IdGenerator.generateId(10).getId();
 
-        String holderName = lineReader.readLine("Enter card holder: ");
-        String cardHolder = holderName;
+        String cardHolder = lineReader.readLine("Enter card holder: ");
 
         String policyOwner = lineReader.readLine("Enter policy owner: ");
 
@@ -38,8 +56,7 @@ public class CardMenu extends AbstractPageMenu<InsuranceCard> {
         while (true) {
             String expirationDateStr = lineReader.readLine("Enter expiration date (dd/MM/yyyy): ");
             try {
-                LocalDateTime date = LocalDate.parse(expirationDateStr, formatter).atStartOfDay();
-                expirationDate = date;
+                expirationDate = LocalDate.parse(expirationDateStr, formatter).atStartOfDay();
                 break;
             } catch (Exception e) {
                 System.out.println("Invalid date format");
@@ -49,5 +66,5 @@ public class CardMenu extends AbstractPageMenu<InsuranceCard> {
         InsuranceCard card = InsuranceCard.builder().cardNumber(id).cardHolderName(cardHolder).policyOwner(policyOwner).expirationDate(expirationDate).build();
         db.add(card);
     }
-    
+
 }

@@ -1,14 +1,15 @@
 package com.guitarhero2004.icms.app;
 
-import java.lang.reflect.Array;
+/**
+ * @author Tran Nguyen Anh Minh - s3979367
+ * External sources and ideas: JLine3 documentation and examples, StackOverflow, ChatGPT
+ */
+
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.jline.terminal.Terminal;
 
 import com.guitarhero2004.icms.card.InsuranceCard;
-import com.guitarhero2004.icms.customer.Customer;
 import com.guitarhero2004.icms.customer.Dependent;
 import com.guitarhero2004.icms.customer.PolicyHolder;
 import com.guitarhero2004.icms.customer.PolicyHolderBuilder;
@@ -21,11 +22,26 @@ import com.guitarhero2004.icms.lib.Utils.Console;
 import com.guitarhero2004.icms.lib.idGenerator.IdGenerator;
 import com.guitarhero2004.icms.lib.menu.MenuList;
 
+/**
+ * Class for managing the menu related to PolicyHolders.
+ * Extends the AbstractPageMenu class with PolicyHolder as the type parameter.
+ */
 public class PolicyHolderMenu extends AbstractPageMenu<PolicyHolder> {
+
+    /**
+     * Constructor for PolicyHolderMenu.
+     * @param term The terminal where the menu will be displayed.
+     * @param menu The menu list where the menu items will be added.
+     */
     public PolicyHolderMenu(Terminal term, MenuList menu) {
         super(term, "Policy holder", menu, PolicyHolderDB.getInstance());
     }
 
+    /**
+     * Method for adding a PolicyHolder object to the database.
+     * Overrides the abstract method in the superclass.
+     * @param db The database where the object will be added.
+     */
     @Override
     protected void addObj(AbstractDB<PolicyHolder> db) {
         Console.clearScreen();
