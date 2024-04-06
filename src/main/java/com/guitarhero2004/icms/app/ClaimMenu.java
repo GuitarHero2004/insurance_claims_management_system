@@ -88,9 +88,9 @@ public class ClaimMenu extends AbstractPageMenu<Claim> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime examDate;
         while (true) {
-            String expirationDateStr = lineReader.readLine("Enter expiration date (dd/MM/yyyy): ");
+            String claimDateStr = lineReader.readLine("Enter claim date (dd/MM/yyyy): ");
             try {
-                LocalDateTime date = LocalDate.parse(expirationDateStr, formatter).atStartOfDay();
+                LocalDateTime date = LocalDate.parse(claimDateStr, formatter).atStartOfDay();
                 examDate = date;
                 break;
             } catch (Exception e) {
